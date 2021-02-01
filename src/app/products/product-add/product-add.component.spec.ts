@@ -3,10 +3,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AppComponent } from 'src/app/app.component';
+import { ProductService } from '../shared/product.service';
 
 import { ProductAddComponent } from './product-add.component';
 
-fdescribe('ProductAddComponent', () => {
+describe('ProductAddComponent', () => {
   let component: ProductAddComponent;
   let fixture: ComponentFixture<ProductAddComponent>;
 
@@ -17,6 +18,9 @@ fdescribe('ProductAddComponent', () => {
         ReactiveFormsModule, 
         ImageCropperModule, 
         RouterTestingModule
+      ], 
+      providers: [
+        { provide: ProductService, useClass: ProductServiceMock}
       ]
     })
     .compileComponents();
@@ -32,3 +36,8 @@ fdescribe('ProductAddComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+class ProductServiceMock {
+
+}
